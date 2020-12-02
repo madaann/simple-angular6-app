@@ -1,9 +1,6 @@
 ##Using base image alpine
 FROM nginx:alpine
 
-LABEL Author="Madan Narayanaswamy <Madan.Narayanaswamy@msg-global.com>"
-LABEL app-version="1.0"
-
 ##updating the packages
 RUN apk update
 RUN apk fix
