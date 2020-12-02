@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-frontend
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+        app: flexi-frontend
+  template:
+    metadata:
+      labels:
+        app: flexi-frontend
+    spec:
+      containers:
+      - name: flexi-frontend
+        image: madaan/angular:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 80       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-frontend-svc
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: flexi-frontend
